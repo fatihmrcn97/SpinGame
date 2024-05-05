@@ -12,12 +12,15 @@ public class SpinItem : MonoBehaviour
 
     private void Awake()
     {
-        _itemImage = GetComponentInChildren<Image>();
+ 
         _earnedItemCountText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void FillTheItem(string earnedItemCountText, Sprite itemImage, SpinItemSO SO)
     {
+        var imageObject = Instantiate(SO.itemPicturePrefab, transform);
+        var _itemImage = imageObject.GetComponent<Image>();
+
         _itemImage.sprite = itemImage;
         _earnedItemCountText.text = earnedItemCountText;
         spinItemSO = SO;

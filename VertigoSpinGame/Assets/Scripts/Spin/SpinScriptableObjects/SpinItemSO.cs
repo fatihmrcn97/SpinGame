@@ -9,6 +9,7 @@ public abstract class SpinItemSO : ScriptableObject
 
     public ItemType ItemType;
 
+    public GameObject itemPicturePrefab;
 
     public abstract bool IsBomb();
 }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpinMovement : MonoBehaviour
 {
+
+    [SerializeField] private Button spinBtn;
 
     [Range(0, 10)]
     [SerializeField] private float speed;
@@ -20,13 +23,19 @@ public class SpinMovement : MonoBehaviour
     private float anglePerItem;
     private int itemNumber;
 
+
+    private void Awake()
+    {
+        spinBtn.onClick.AddListener(Spin);
+    }
+
     void Start()
     {
         spinning = false;
         anglePerItem = 360 / 8;
     }
 
-    public void Spin()
+    private void Spin()
     {
 
         if (spinning) return;

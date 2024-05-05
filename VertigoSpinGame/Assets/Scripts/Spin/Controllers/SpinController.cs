@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpinController : MonoBehaviour
-{
+{ 
 
     [SerializeField] private List<SpinItem> spinItems;
 
@@ -11,6 +12,8 @@ public class SpinController : MonoBehaviour
     private int spinCount = 0;
 
     public List<SpinItem> SpinItems => spinItems;
+
+
 
     private void Start()
     {

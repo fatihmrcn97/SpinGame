@@ -23,8 +23,15 @@ public class RewardController : MonoBehaviour
     private void RewardEarned(int winnerNumber)
     {
         var rewardSO = spinController.SpinItems[winnerNumber].spinItemSO;
-         
-        if(CheckRewardAlreadyEarned(rewardSO)) return;
+
+        if (rewardSO.IsBomb())
+        {
+            AllRewardLosed();
+            return;
+        }
+
+
+        if (CheckRewardAlreadyEarned(rewardSO)) return;
 
         var rewardObject = Instantiate(rewardPrefab, transform);
         var reward = rewardObject.GetComponent<RewardItem>();
@@ -45,5 +52,14 @@ public class RewardController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void AllRewardLosed()
+    {
+        foreach (var item in earnedObjects)
+        {
+            Destroy(item.gameObject);
+        }
+        earnedObjects.Clear();
     }
 }

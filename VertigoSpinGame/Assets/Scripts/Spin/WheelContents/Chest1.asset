@@ -16,3 +16,5 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 5eff46a7457d6ba45a3b21a3bdccfc64, type: 3}
   itemWinCount: 5
   ItemType: 0
+  itemPicturePrefab: {fileID: 1305675945389551921, guid: ef89e05cf169fc040984a553ae4e5e2e,
+    type: 3}
