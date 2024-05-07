@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae12c5453c436e44b96a3d4541645011, type: 3}
+  m_Name: Money SO
+  m_EditorClassIdentifier: 
+  itemName: Money
+  itemImage: {fileID: 21300000, guid: 3a7c2bb9ad883c44bb7649cda4143891, type: 3}
+  itemWinCount: 3
+  ItemType: 9
+  itemPicturePrefab: {fileID: 7924846796745769742, guid: 98a22e3acf0a5904b92e92f7fbce7b2f,
+    type: 3}
+  rewardCardUIPrefab: {fileID: 8326944888285656222, guid: f0dc5ba88e62b0d44930e47d3eab6243,
+    type: 3}

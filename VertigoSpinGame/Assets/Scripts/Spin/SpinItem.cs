@@ -6,8 +6,6 @@ public class SpinItem : MonoBehaviour
 {
 
     private TextMeshProUGUI _earnedItemCountText;
-    private Image _itemImage;
-
     public SpinItemSO spinItemSO {  get; private set; }
 
     private void Awake()
@@ -16,13 +14,13 @@ public class SpinItem : MonoBehaviour
         _earnedItemCountText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void FillTheItem(string earnedItemCountText, Sprite itemImage, SpinItemSO SO)
+    public void FillTheItem(SpinItemSO SO)
     {
         var imageObject = Instantiate(SO.itemPicturePrefab, transform);
         var _itemImage = imageObject.GetComponent<Image>();
 
-        _itemImage.sprite = itemImage;
-        _earnedItemCountText.text = earnedItemCountText;
+        _itemImage.sprite = SO.itemImage;
+        _earnedItemCountText.text = SO.itemWinCount;
         spinItemSO = SO;
     }
 

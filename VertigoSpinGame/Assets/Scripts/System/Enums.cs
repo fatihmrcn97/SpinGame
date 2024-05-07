@@ -11,5 +11,13 @@ public enum ItemType
     bomb,
     gold,
     money,
+    weapon1,
+    weapon2,
+    weapon3,
+    weapon4,
+    weapon5,    
+    weapon6,
+    knife1,
+    knife2,
 
 }

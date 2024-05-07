@@ -12,8 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTxt;
 
     [SerializeField] private int scoreMultiplier = 1;
-
-    public GameObject maxUI;
+     
 
     private void Awake()
     {

@@ -18,3 +18,5 @@ MonoBehaviour:
   ItemType: 1
   itemPicturePrefab: {fileID: 1305675945389551921, guid: ef89e05cf169fc040984a553ae4e5e2e,
     type: 3}
+  rewardCardUIPrefab: {fileID: 9167493099509444521, guid: 0a6561625d2c2e1469160765799a54dc,
+    type: 3}

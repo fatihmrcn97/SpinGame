@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpinMovement : MonoBehaviour
+public class SpinMovement : SingletonMonobehaviour<SpinMovement>
 {
 
     [SerializeField] private Button spinBtn;
@@ -17,28 +17,37 @@ public class SpinMovement : MonoBehaviour
     [SerializeField] private Transform rotateTransfrom;
 
     [SerializeField] private List<AnimationCurve> animationCurves;
-
-
-    private bool spinning;
+     
+    public bool Spinning { get; private set; }
     private float anglePerItem;
     private int itemNumber;
 
 
+    private void OnEnable()
+    {
+        Events.OnRewardProcessFinished += MakeSpinableAgain;  
+            }
+    private void OnDisable()
+    {
+        Events.OnRewardProcessFinished -= MakeSpinableAgain;
+    }
+
     private void Awake()
     {
+        base.Awake();
         spinBtn.onClick.AddListener(Spin);
     }
 
     void Start()
     {
-        spinning = false;
+        Spinning = false;
         anglePerItem = 360 / 8;
     }
 
     private void Spin()
     {
 
-        if (spinning) return;
+        if (Spinning) return;
 
      
         Events.OnStartSpinAction?.Invoke();
@@ -53,7 +62,7 @@ public class SpinMovement : MonoBehaviour
     {
 
 
-        spinning = true;
+        Spinning = true;
 
         float timer = 0.0f;
         float startAngle = rotateTransfrom.eulerAngles.z;
@@ -69,12 +78,16 @@ public class SpinMovement : MonoBehaviour
             yield return 0;
         }
 
-        rotateTransfrom.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle);
-        spinning = false;
+        rotateTransfrom.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle); 
+         
 
         Events.OnEndSpinAction?.Invoke(itemNumber);
    
 
     }
 
+    private void MakeSpinableAgain()
+    { 
+        Spinning = false;
+    }
 }

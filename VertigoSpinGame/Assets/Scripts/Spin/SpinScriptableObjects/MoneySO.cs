@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SpinItems/Bombs")]
-public class BombSO : SpinItemSO
+[CreateAssetMenu(menuName = "SpinItems/Money")]
+public class MoneySO : SpinItemSO
 {
     public override void AddRewardToInventory()
     {
-        Debug.Log("Failed inventry exloped");
+        UIManager.instance.ScoreAdd(1);
     }
 
     public override bool IsBomb()
     {
-        return true;
+        return false;
     }
 }

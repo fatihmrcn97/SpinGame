@@ -9,6 +9,10 @@ public class SpinController : MonoBehaviour
 
     [SerializeField] private List<SpinItemSO> spinItemsSO;
 
+    [SerializeField] private List<SpinItemSO> betterSpinItemsSO;
+
+    [SerializeField] private SpinItemSO bombSO;
+
     private int spinCount = 0;
 
     public List<SpinItem> SpinItems => spinItems;
@@ -24,19 +28,19 @@ public class SpinController : MonoBehaviour
         {
             var randomItem = spinItemsSO[i];
             var winnableItem = item.GetComponent<SpinItem>();
-            winnableItem.FillTheItem(randomItem.itemWinCount, randomItem.itemImage,randomItem);
+            winnableItem.FillTheItem(randomItem);
             i++;
         }
     }
 
     private void OnEnable()
     {
-       // Events.OnEndSpinAction += ReFillSpin;
+      Events.OnRewardWinned += ReFillSpin;
     }
 
     private void OnDisable()
     {
-      //  Events.OnEndSpinAction -= ReFillSpin;
+       Events.OnRewardWinned -= ReFillSpin;
     }
 
 
@@ -44,6 +48,8 @@ public class SpinController : MonoBehaviour
 
     private void ReFillSpin()
     {
+        DestroyAllItems();
+
         spinCount++;
         if(spinCount % 5 == 0)
         {
@@ -57,22 +63,44 @@ public class SpinController : MonoBehaviour
             return;
         }
 
-        Fill(false);
+        Fill(true);
     }
 
     private void Fill(bool isBombIncluded)
     {
+
+        int betterSpintItemCount = 0;
         foreach (var item in spinItems)
         {
             var randomItem = spinItemsSO[Random.Range(0, spinItemsSO.Count)];
+              
+            if(spinCount>3 && betterSpintItemCount<spinCount/3)
+            {
+                randomItem = betterSpinItemsSO[Random.Range(0, betterSpinItemsSO.Count)];
+                betterSpintItemCount++;
+            }
+
+
             var winnableItem = item.GetComponent<SpinItem>();
-            winnableItem.FillTheItem(randomItem.itemWinCount, randomItem.itemImage, randomItem);
+            if (isBombIncluded)
+            {
+                isBombIncluded = false;
+                randomItem = bombSO; 
+            }
+            winnableItem.FillTheItem(randomItem);
         }
     }
  
 
-    // 5th spin make bronz 30th gold
 
-    // etc.
+    private void DestroyAllItems()
+    {
+        foreach (var item in spinItems)
+        {
+            var imagePrefab = item.GetComponentInChildren<Image>().gameObject;
+            Destroy(imagePrefab);
+        }
+    }
+   
 
 }
