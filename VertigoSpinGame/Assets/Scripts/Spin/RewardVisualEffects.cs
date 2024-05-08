@@ -36,10 +36,11 @@ public class RewardVisualEffects : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             var uiSlipping = rewardSO.InstantiateSlippingUI(spinTransform);
-            uiSlipping.transform.localScale = Vector3.one * 1.5f;
+            uiSlipping.transform.localScale = Vector3.zero;
+            uiSlipping.transform.DOScale(Vector3.one * 1.5f, .15f); 
             uiSlipping.transform.localPosition = new Vector3(Random.Range(-125, 125), Random.Range(-125, 125), 0);
-            yield return new WaitForSeconds(.05f);
-            uiSlipping.transform.DOMove(leftPanel.position, .45f).OnComplete(() => Destroy(uiSlipping));
+            yield return new WaitForSeconds(.1f);
+            uiSlipping.transform.DOMove(leftPanel.position+new Vector3(Random.Range(-25, 25), Random.Range(-55, 55),0), .45f).OnComplete(() => Destroy(uiSlipping));
         }
         yield return new WaitForSeconds(.56f);
         Events.OnRewardProcessFinished?.Invoke();

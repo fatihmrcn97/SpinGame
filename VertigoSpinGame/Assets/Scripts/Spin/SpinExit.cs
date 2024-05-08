@@ -45,6 +45,7 @@ public class SpinExit : MonoBehaviour
 
         }
 
+        Events.OnSpinExitFinished?.Invoke();
         rewardItems.Clear();
         yield return new WaitForSeconds(.55f);
         rewardCollectionPanel.gameObject.SetActive(false);

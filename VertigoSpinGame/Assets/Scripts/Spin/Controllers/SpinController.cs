@@ -41,11 +41,13 @@ public class SpinController : MonoBehaviour
     private void OnEnable()
     {
       Events.OnRewardWinned += ReFillSpin;
+        Events.OnSpinExitFinished += SpinCountReset;
     }
 
     private void OnDisable()
     {
        Events.OnRewardWinned -= ReFillSpin;
+        Events.OnSpinExitFinished += SpinCountReset;
     }
 
 
@@ -95,6 +97,10 @@ public class SpinController : MonoBehaviour
         }
     }
  
+    private void SpinCountReset()
+    {
+        spinCount = 0;
+    }
 
 
     private void DestroyAllItems()
