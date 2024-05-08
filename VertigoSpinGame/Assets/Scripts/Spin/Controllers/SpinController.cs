@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,15 @@ public class SpinController : MonoBehaviour
 
     [SerializeField] private SpinItemSO bombSO;
 
+    [SerializeField] private Image wheelImage, indicatorImage;
+
+    [SerializeField] private Sprite bronzWhell, bronzIndicator, silverWheel, silerIndicator, goldWheel, goldIndicator;
+
+    [SerializeField] private TextMeshProUGUI whellColorTxt;
+
     private int spinCount = 0;
 
     public List<SpinItem> SpinItems => spinItems;
-
-
 
     private void Start()
     {
@@ -44,8 +49,6 @@ public class SpinController : MonoBehaviour
     }
 
 
-
-
     private void ReFillSpin()
     {
         DestroyAllItems();
@@ -55,14 +58,15 @@ public class SpinController : MonoBehaviour
         {
             if(spinCount % 30 == 0)
             {
+                SetupWheelType(2);
                 Fill(false);
                 return;
             }
-
+            SetupWheelType(1);
             Fill(false);
             return;
         }
-
+        SetupWheelType(0);
         Fill(true);
     }
 
@@ -103,4 +107,30 @@ public class SpinController : MonoBehaviour
     }
    
 
+    private void SetupWheelType(int wheelIndex)
+    {
+        if(wheelIndex == 0)
+        {
+            // Bronz default whell
+            wheelImage.sprite = bronzWhell;
+            indicatorImage.sprite = bronzIndicator;
+            whellColorTxt.text = "BRONZ WHEEL";
+            whellColorTxt.color = new Color(.92f , .45f, 0,1);
+        }
+        else if(wheelIndex == 1)
+        {
+            wheelImage.sprite = silverWheel;
+            indicatorImage.sprite = silerIndicator;
+            whellColorTxt.text = "SILVER WHEEL";
+            whellColorTxt.color = Color.gray;
+        }
+        else
+        {
+            wheelImage.sprite = goldWheel;
+            indicatorImage.sprite = goldIndicator;
+            whellColorTxt.text = "GOLDEN WHEEL";
+            whellColorTxt.color = Color.yellow;
+
+        }
+    }
 }

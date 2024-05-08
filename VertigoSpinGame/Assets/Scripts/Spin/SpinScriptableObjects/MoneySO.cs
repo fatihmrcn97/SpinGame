@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SpinItems/Money")]
@@ -7,7 +5,7 @@ public class MoneySO : SpinItemSO
 {
     public override void AddRewardToInventory()
     {
-        UIManager.instance.ScoreAdd(1);
+        UIManager.instance.ScoreAdd(int.Parse(itemWinCount));
     }
 
     public override bool IsBomb()
